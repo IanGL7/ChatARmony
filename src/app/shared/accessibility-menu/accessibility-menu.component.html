@@ -1,0 +1,19 @@
+<div class="accessibility-menu">
+  <!-- Botón A que activa el arrastre y abre/cierra el menú -->
+  <button (mousedown)="startDrag($event)" (click)="toggleMenu($event)" aria-label="Accessibility menu" class="accessibility-icon">
+    <i class="fas fa-universal-access"></i> <!-- Ícono de accesibilidad -->
+  </button>      
+
+  <!-- Menú desplegable básico -->
+  <div *ngIf="menuOpen" class="menu-options">
+    <button (click)="increaseFontSize()">A+</button>
+    <button (click)="decreaseFontSize()">A-</button>
+    <button (click)="toggleContrast()">Cambiar Contraste</button>
+    <button (click)="readSelectedText()" class="menu-button">
+      🔊 Leer Texto Seleccionado
+    </button>
+    <button (click)="readAllText()" class="menu-button">
+      🔊 Leer Todo
+    </button>
+  </div>
+</div>

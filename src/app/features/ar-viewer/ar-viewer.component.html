@@ -1,0 +1,16 @@
+<div class="relative w-screen h-screen overflow-hidden bg-black">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/imagenes/Ansiedad.jpg'); z-index: 0;"></div>
+    <canvas id="canvas" class="absolute inset-0 w-full h-full z-10"></canvas>
+    <video id="video" autoplay playsinline class="absolute inset-0 w-full h-full object-cover invisible"></video>
+    <audio id="backgroundAudio" loop>
+        <source src="/audio/Ansiedad1.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <!-- Botón para regresar -->
+    <button (click)="goBack()" class="absolute top-4 left-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md z-20">
+        Regresar
+    </button>
+
+    
+</div>

@@ -2,13 +2,11 @@
   <div class="w-full max-w-4xl flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
     
     <!-- Formulario de inicio de sesión -->
-    <div class="w-full md:w-1/2 p-8">
+    <div class="container chat-content w-full md:w-1/2 p-8 mx-auto bg-gradient-to-br from-green-100 via-purple-100 to-blue-100 rounded-lg shadow-lg max-w-2xl">
       <!-- Título y subtítulo -->
       <div class="text-2xl font-bold mb-4 text-gray-800">ARmony</div>
       <h1 class="text-4xl font-bold mb-6 text-gray-900">Iniciar sesión</h1>
 
-     
-     
       <!-- Formulario de campos -->
       <form class="space-y-4" [formGroup]="form" (ngSubmit)="submit()">
         
@@ -83,10 +81,10 @@
       </p>
     </div>
 
-   <!-- Imagen decorativa -->
-   <div class="w-full md:w-1/2 bg-gradient-to-br from-green-100 via-blue-100 to-pink-100 flex items-end justify-center">
-    <img src="/imagenes/mono1.png" alt="Ilustración decorativa" class="w-full h-full object-cover" />
-  </div>
+    <!-- Imagen decorativa -->
+    <div class="w-full md:w-1/2 bg-gradient-to-br from-green-100 via-blue-100 to-pink-100 flex items-end justify-center">
+      <img src="/imagenes/mono1.png" alt="Ilustración decorativa" class="w-full h-full object-cover" />
+    </div> 
 
   </div>
 </section>

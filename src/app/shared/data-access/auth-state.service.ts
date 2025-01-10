@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, getAuth, signOut } from '@angular/fire/auth';
+import { Auth, authState, User, signOut } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,15 +8,20 @@ import { Observable } from 'rxjs';
 export class AuthStateService {
   private _auth = inject(Auth);
 
-  get authState$(): Observable<any> {
+  // Observable del estado de autenticación del usuario
+  get authState$(): Observable<User | null> {
     return authState(this._auth);
   }
 
+  // Usuario actual
   get currentUser() {
-    return getAuth().currentUser;
+    return this._auth.currentUser;
   }
 
+  // Método para cerrar sesión con manejo de errores
   logOut() {
-    return signOut(this._auth);
+    return signOut(this._auth).catch((error) => {
+      console.error('Error al cerrar sesión:', error);
+    });
   }
 }

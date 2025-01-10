@@ -1,0 +1,30 @@
+/* survey.component.css */
+h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 10px 5px;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  .actions {
+    text-align: center;
+  }
+  

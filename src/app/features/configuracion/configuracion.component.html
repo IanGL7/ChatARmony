@@ -1,0 +1,37 @@
+<app-menu-lateral (menuToggled)="onMenuToggled($event)"></app-menu-lateral>
+
+<section
+  [ngClass]="{ 'ml-64': isMenuExpanded, 'ml-16': !isMenuExpanded }"
+  class="min-h-screen bg-gradient-to-br from-green-200 via-blue-200 to-pink-200 flex items-center justify-center p-4 transition-all duration-300"
+>
+<div class="configuracion chat-content max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-6 text-gray-800">Configuración de Perfil</h2>
+  
+  <form [formGroup]="configForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label for="displayName" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+      <input id="displayName" type="text" formControlName="displayName" 
+             class="input-field block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="mb-4">
+      <label for="photo" class="block text-sm font-medium text-gray-700 mb-1">Foto de perfil</label>
+      <input id="photo" type="file" (change)="onFileSelected($event)"
+             class="input-field block w-full text-gray-700 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <div *ngIf="photoPreview" class="mt-4">
+        <img [src]="photoPreview" alt="Vista previa de la foto de perfil" class="w-24 h-24 rounded-full mx-auto">
+      </div>
+    </div>
+
+    <button type="submit" 
+            class="btn-submit w-full bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      Guardar Cambios
+    </button>
+  </form>
+
+  <div class="account-details mt-6" *ngIf="user && user.email">
+    <h3 class="text-lg font-semibold text-gray-800 mb-2">Detalles de la cuenta</h3>
+    <p class="text-gray-700"><strong>Email:</strong> {{ user.email }}</p>
+  </div>
+</div>
+</section>

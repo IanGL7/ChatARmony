@@ -1,0 +1,31 @@
+<!-- survey.component.html -->
+<h2 class="text-2xl font-semibold text-center mb-4">Encuesta de Satisfacción</h2>
+<p class="text-center mb-6">Del 1 al 10, ¿Qué tan satisfecho/a estás con la plataforma?</p>
+
+<form [formGroup]="surveyForm" (ngSubmit)="submitSurvey()" class="space-y-4">
+  <div class="flex flex-col">
+    <label for="satisfaction" class="text-lg font-medium mb-2">Satisfacción:</label>
+    <input 
+      type="number" 
+      id="satisfaction" 
+      formControlName="satisfaction" 
+      min="1" 
+      max="10"
+      class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <div *ngIf="surveyForm.get('satisfaction')?.invalid && surveyForm.get('satisfaction')?.touched" class="text-red-500 mt-2">
+      <small *ngIf="surveyForm.get('satisfaction')?.errors?.required">La satisfacción es obligatoria.</small>
+      <small *ngIf="surveyForm.get('satisfaction')?.errors?.min">La satisfacción debe ser al menos 1.</small>
+      <small *ngIf="surveyForm.get('satisfaction')?.errors?.max">La satisfacción debe ser como máximo 10.</small>
+    </div>
+  </div>
+
+  <div class="flex justify-center gap-4">
+    <button type="submit" [disabled]="surveyForm.invalid" class="px-6 py-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-400">
+      Enviar
+    </button>
+    <button type="button" (click)="closeDialog()" class="px-6 py-2 border border-gray-300 rounded-lg bg-white">
+      Cerrar
+    </button>
+  </div>
+</form>

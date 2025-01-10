@@ -6,7 +6,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   User as FirebaseUser,
+  updateProfile // Importa updateProfile
 } from '@angular/fire/auth';
+import { getStorage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage'; // Importaciones para Firebase Storage
 import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -15,6 +17,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private _auth = inject(Auth);
+  private _storage = getStorage(); // Inicializa Firebase Storage para subir fotos
 
   constructor() {}
 
@@ -66,5 +69,30 @@ export class AuthService {
    */
   logout() {
     return this._auth.signOut();
+  }
+
+  /**
+   * Método para subir una imagen de perfil a Firebase Storage y obtener la URL pública.
+   * @param file Archivo de imagen a cargar.
+   * @returns Promesa que se resuelve con la URL de descarga de la imagen.
+   */
+  async uploadProfilePhoto(file: File): Promise<string> {
+    const storageRef = ref(this._storage, `profilePhotos/${file.name}`);
+    await uploadBytes(storageRef, file);
+    return await getDownloadURL(storageRef); // Obtiene y devuelve la URL de descarga
+  }
+
+  /**
+   * Método para actualizar el perfil del usuario autenticado actual.
+   * @param profileData Objeto con el nuevo displayName y/o photoURL.
+   * @returns Promesa que se resuelve cuando el perfil se actualiza exitosamente.
+   */
+  updateProfile(profileData: { displayName?: string; photoURL?: string }): Promise<void> {
+    const user = this._auth.currentUser;
+    if (user) {
+      return updateProfile(user, profileData);
+    } else {
+      return Promise.reject('No hay usuario autenticado');
+    }
   }
 }

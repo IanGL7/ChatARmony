@@ -1,93 +1,128 @@
-<div class="fixed top-0 left-0 w-64 h-screen bg-gradient-to-b from-emerald-400 via-emerald-400 to-sky-400 text-white flex flex-col">
+<div
+  [ngClass]="{ 'w-64': isExpanded, 'w-16': !isExpanded }"
+  class="fixed top-0 left-0 h-screen transition-all duration-300 bg-gradient-to-b from-emerald-400 via-emerald-400 to-sky-400 text-white flex flex-col shadow-lg z-50"
+>
+  <!-- Botón de Alternancia -->
+  <button
+    (click)="toggleMenu()"
+    class="absolute top-4 -right-6 bg-white text-emerald-500 rounded-full p-2 shadow-lg focus:outline-none"
+    aria-label="Alternar Menú"
+  >
+    <svg
+      class="w-4 h-4 transform transition-transform duration-300"
+      [ngClass]="{ 'rotate-180': isExpanded }"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
   <!-- Logo -->
-  <div class="p-6">
-    <h2 class="text-2xl font-bold border-b pb-2 text-white">ARmony</h2>
+  <div class="p-6 flex items-center justify-center">
+    <span *ngIf="!isExpanded" class="text-2xl font-bold">A</span>
+    <h2
+      *ngIf="isExpanded"
+      class="text-2xl font-bold border-b pb-2 transition-opacity duration-300 whitespace-nowrap"
+    >
+      ARmony
+    </h2>
   </div>
 
-  <!-- Opciones de menú -->
-  <ul class="flex-1 px-4 space-y-3">
+  <!-- Opciones del Menú -->
+  <ul class="flex-1 px-2 space-y-3">
+    <!-- Opción: Generar Chat -->
     <li>
-      <button class="w-full flex items-center p-2.5 rounded-md bg-violet-500 hover:bg-violet-600 transition-colors">
-        <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button
+        routerLink="/home/generar-chat"
+        routerLinkActive="bg-violet-500"
+        class="w-full flex items-center p-2.5 rounded-md hover:bg-violet-600 transition-colors"
+        [ngClass]="{ 'justify-start': isExpanded, 'justify-center': !isExpanded }"
+        aria-label="Generar Chat"
+      >
+        <svg
+          class="w-5 h-5"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
           <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
-        Generar Chat
-      </button>
-    </li>
-    <li>
-      <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-        <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-        </svg>
-        Comentarios
-      </button>
-    </li>
-    <li>
-      <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-        <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-        Biblioteca Rápida
-      </button>
-    </li>
-    <li>
-      <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-        <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-        </svg>
-        Chat Guardados
-      </button>
-    </li>
-    <li>
-      <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-        <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-        Favoritos
-      </button>
-    </li>
-    <li>
-      <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-        <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        Historial
+        <span *ngIf="isExpanded" class="ml-3">Generar Chat</span>
       </button>
     </li>
   </ul>
 
-  <div class="px-4">
-    <hr class="border-white/20 my-4">
-
-    <!-- Configuración y Salir -->
+  <!-- Configuración y Cerrar Sesión -->
+  <div class="px-4" *ngIf="showSettings">
+    <hr class="border-white/20 my-4" />
     <ul class="mb-4 space-y-3">
       <li>
-        <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-          <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <button
+          routerLink="/home/configuracion"
+          class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors"
+          [ngClass]="{ 'justify-start': isExpanded, 'justify-center': !isExpanded }"
+          aria-label="Configuración"
+        >
+          <svg
+            class="w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+            />
             <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          Configuración
+          <span *ngIf="isExpanded" class="ml-3">Configuración</span>
         </button>
       </li>
-      <li (click)="logout()">
-        <button class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors">
-          <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <li>
+        <button
+          (click)="logout()"
+          class="w-full flex items-center p-2.5 rounded-md hover:bg-white/10 transition-colors"
+          [ngClass]="{ 'justify-start': isExpanded, 'justify-center': !isExpanded }"
+          aria-label="Salir"
+        >
+          <svg
+            class="w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
-          Salir
+          <span *ngIf="isExpanded" class="ml-3">Salir</span>
         </button>
       </li>
     </ul>
+  </div>
 
-    <!-- Información de la sesión del usuario -->
-    <div *ngIf="user" class="flex items-center P-1 bg-white/10 rounded-lg mb-4">
-      <img [src]="user.photoURL || 'https://via.placeholder.com/40'" alt="Perfil" 
-           class="w-8 h-8 rounded-full mr-3">
-      <div class="text-sm">
-        <p class="font-medium">{{ user.displayName || 'Usuario' }}</p>
-        <p class="text-xs text-gray-200">{{ user.email }}</p>
-      </div>
+  <!-- Usuario -->
+  <div
+    *ngIf="user"
+    class="flex items-center p-4 bg-white/10 rounded-lg mb-4 cursor-pointer"
+    [ngClass]="{ 'justify-start': isExpanded, 'justify-center': !isExpanded }"
+    (click)="toggleSettings()"
+    aria-label="Usuario"
+  >
+    <img
+      [src]="user.photoURL || 'https://via.placeholder.com/40'"
+      alt="Perfil de usuario"
+      class="w-8 h-8 rounded-full"
+    />
+    <div *ngIf="isExpanded" class="ml-3 transition-opacity duration-300">
+      <p class="font-medium">{{ user.displayName || 'Usuario' }}</p>
+      <p class="text-xs text-gray-200">{{ user.email }}</p>
     </div>
   </div>
 </div>

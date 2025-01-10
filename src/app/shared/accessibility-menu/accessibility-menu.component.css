@@ -1,0 +1,52 @@
+.accessibility-menu {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
+}
+
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+button {
+  margin: 5px 0;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.accessibility-icon {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  font-size: 20px;
+  position: relative;
+  bottom: 20px;
+  right: 20px;
+}
+
+.accessibility-icon:hover {
+  background-color: #555;
+}
+
+.accessibility-icon:active {
+  cursor: grabbing;
+}
