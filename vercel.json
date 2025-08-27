@@ -1,6 +1,7 @@
 {
   "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm run build",
+  "outputDirectory": "dist/chatarmony-frontend",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "https://armony-backend.onrender.com/$1" }
   ],
