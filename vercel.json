@@ -4,6 +4,6 @@
   "outputDirectory": "dist/chatarmony-frontend",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "https://armony-backend.onrender.com/$1" },
-    { "source": "/(.*)", "destination": "src/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
